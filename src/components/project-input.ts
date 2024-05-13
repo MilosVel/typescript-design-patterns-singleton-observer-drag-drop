@@ -23,9 +23,15 @@ export class ProjectInput extends Cmp<HTMLDivElement, HTMLFormElement> {
     this.configure();
   }
 
+  // configure() {
+  //   this.element.addEventListener('submit', this.submitHandler.bind(this)); // varijanta sa bind
+  //   // this.element.addEventListener('submit', this.submitHandler);         // varijanta koja se koristi sa autodekoratorom
+  // }
+
   configure() {
-    this.element.addEventListener('submit', this.submitHandler.bind(this));
-    // this.element.addEventListener('submit', this.submitHandler);
+    this.element.addEventListener('submit', (event) => {
+      this.submitHandler(event); //////                                        // varijanta sa lexical scoping
+    });
   }
 
   renderContent() {}
@@ -74,7 +80,7 @@ export class ProjectInput extends Cmp<HTMLDivElement, HTMLFormElement> {
   private submitHandler(event: Event) {
     event.preventDefault();
 
-    console.log('this je: ',this)
+    console.log('this je-> : ',this)
 
     const userInput = this.gatherUserInput();
     if (Array.isArray(userInput)) {
