@@ -24,7 +24,8 @@ export class ProjectInput extends Cmp<HTMLDivElement, HTMLFormElement> {
   }
 
   configure() {
-    this.element.addEventListener('submit', this.submitHandler);
+    this.element.addEventListener('submit', this.submitHandler.bind(this));
+    // this.element.addEventListener('submit', this.submitHandler);
   }
 
   renderContent() {}
@@ -68,9 +69,13 @@ export class ProjectInput extends Cmp<HTMLDivElement, HTMLFormElement> {
     this.peopleInputElement.value = '';
   }
 
-  @Autobind
+  
+  // @Autobind
   private submitHandler(event: Event) {
     event.preventDefault();
+
+    console.log('this je: ',this)
+
     const userInput = this.gatherUserInput();
     if (Array.isArray(userInput)) {
       const [title, desc, people] = userInput;
@@ -79,3 +84,5 @@ export class ProjectInput extends Cmp<HTMLDivElement, HTMLFormElement> {
     }
   }
 }
+
+
