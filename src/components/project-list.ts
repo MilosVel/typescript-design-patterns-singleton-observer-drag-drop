@@ -67,14 +67,28 @@ export class ProjectList extends Component<HTMLDivElement, HTMLElement>
       this.type.toUpperCase() + ' PROJECTS';
   }
 
+  // private renderProjects() {
+  //   const listEl = document.getElementById(
+  //     `${this.type}-projects-list`
+  //   )! as HTMLUListElement;
+  //   listEl.innerHTML = '';
+  //   for (const prjItem of this.assignedProjects) {
+  //     new ProjectItem(this.element.querySelector('ul')!.id, prjItem); 
+  //   }
+  // }
+
+  
   private renderProjects() {
-    const listEl = document.getElementById(
-      `${this.type}-projects-list`
-    )! as HTMLUListElement;
-    listEl.innerHTML = '';
+    // this?.element?.querySelector('ul')?.innerHTML = ''; // this is not work, but code below work
+    let lista = this.element.querySelector('ul')
+    if(lista){
+      lista.innerHTML = '';
+    }
+    
     for (const prjItem of this.assignedProjects) {
-      // new ProjectItem(this.element.querySelector('ul')!.id, prjItem); // line below aslo works well
-      new ProjectItem(`${this.type}-projects-list`, prjItem);  // line above alos works well
+      new ProjectItem(`${this.type}-projects-list`, prjItem); 
     }
   }
+
+
 }
